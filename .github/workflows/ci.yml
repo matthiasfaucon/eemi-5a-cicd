@@ -48,15 +48,14 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Test"
-        run: npm run test
-        continue-on-error: true
+        run: npm run test:unit
   test_integration:
     needs: ["build"]
     name: "Test project"
     runs-on: "ubuntu-latest"
     steps:
       - name: "Test"
-        run: npm run test
+        run: npm run test -- --selectProjects integration-test
         continue-on-error: true
   test_e2e:
     needs: ["build"]
@@ -64,7 +63,7 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Test"
-        run: npm run test
+        run: npm run test:e2e
         continue-on-error: true
 
   notify:
