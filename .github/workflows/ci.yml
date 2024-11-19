@@ -44,27 +44,39 @@ jobs:
 
   test_unit:
     needs: ["build"]
-    name: "Test project"
+    name: "UNIT Test project"
     runs-on: "ubuntu-latest"
     steps:
       - name: "Test"
         run: npm run test:unit
+
   test_integration:
     needs: ["build"]
-    name: "Test project"
+    name: "INTEGRATION Test project"
     runs-on: "ubuntu-latest"
+    services:
+      database:
+        image: mongo
+        env:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: example
+        ports:
+          - 27017:27017
     steps:
+      - name: "Check database healthy"
+        run: nc -vz localhost 27017
       - name: "Test"
         run: npm run test -- --selectProjects integration-test
         continue-on-error: true
+
   test_e2e:
     needs: ["build"]
-    name: "Test project"
+    name: "E2E Test project"
     runs-on: "ubuntu-latest"
+    continue-on-error: true
     steps:
       - name: "Test"
         run: npm run test:e2e
-        continue-on-error: true
 
   notify:
     needs: ["test_unit", "test_integration", "test_e2e"]
