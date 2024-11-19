@@ -81,8 +81,7 @@ jobs:
       - name: "Test"
         env:
           MONGO_URL: "mongodb://root:example@localhost:27017/app"
-        run: npm run test -- --selectProjects integration-test
-        continue-on-error: true
+        run: npm run test:integration
 
   test_e2e:
     needs: ["build"]
