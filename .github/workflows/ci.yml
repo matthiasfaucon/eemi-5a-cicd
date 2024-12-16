@@ -78,9 +78,15 @@ jobs:
         with:
           path: ./node_modules
           key: node_modules-${{ hashFiles('package-lock.json') }}
+      - name: "Generate .env file"
+        run: |
+          echo "$DOT_ENV"
+          echo "MONGODB_URL=mongodb://root:example@localhost:27017" > .env
+          echo "${{vars.DOT_ENV}}" >> .env
       - name: "Test"
         env:
-          MONGO_URL: "mongodb://root:example@localhost:27017/app"
+          MONGODB_URL: ${{ secrets.MONGODB_URL }}
+          DOT_ENV: ${{ vars.DOT_ENV }}
         run: npm run test:integration
 
   test_e2e:
