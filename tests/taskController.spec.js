@@ -1,6 +1,6 @@
-const Task = require("../models/task");
-const db = require("../config/mongoose");
 const app = require("../app");
+const db = require("../config/mongoose");
+const Task = require("../models/task");
 const supertest = require("supertest");
 
 const request = supertest(app);
