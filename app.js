@@ -1,5 +1,6 @@
+require("dotenv").config();
+console.log(process.env);
 const express = require("express");
-const port = 4000;
 const path = require("path");
 
 // require the mongoose file
@@ -11,6 +12,12 @@ const Dashboard = require("./models/dashboard");
 console.log("Starting server");
 
 const app = express();
+
+console.log(
+  process.env.START_MESSAGE,
+  process.env.PORT,
+  process.env.MONGODB_URL
+);
 
 // path: routes\index.js
 app.use("/", require("./routes/index"));

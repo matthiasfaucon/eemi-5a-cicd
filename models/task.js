@@ -9,6 +9,14 @@ const TaskSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  description: {
+    type: String,
+    required: true,
+  },
+  categoryChoosed: {
+    type: String,
+    required: true,
+  },
 });
 
 const Task = db.model("Task", TaskSchema);

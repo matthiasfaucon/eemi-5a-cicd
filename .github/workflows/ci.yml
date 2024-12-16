@@ -82,11 +82,11 @@ jobs:
         run: |
           echo "$DOT_ENV"
           echo "MONGODB_URL=mongodb://root:example@localhost:27017" > .env
-          echo "${{vars.DOT_ENV}}" >> .env
+          echo "${{ vars.DOT_ENV }}" >> .env
       - name: "Test"
         env:
-          MONGODB_URL: ${{ secrets.MONGODB_URL }}
-          DOT_ENV: ${{ vars.DOT_ENV }}
+          MONGODB_URL: ${{secrets.MONGODB_URL}}
+          DOT_ENV: ${{vars.DOT_ENV}}
         run: npm run test:integration
 
   test_e2e:
