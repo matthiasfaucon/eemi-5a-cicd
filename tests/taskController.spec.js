@@ -1,4 +1,5 @@
-const Task = require("../models/Task");
+const Task = require("../models/task");
+const db = require("../config/mongoose");
 const app = require("../app");
 const supertest = require("supertest");
 
@@ -19,6 +20,9 @@ async function generateTaskSeeds() {
 describe("Task Controller - integration test", () => {
   beforeEach(async () => {
     await Task.deleteMany();
+  });
+  afterAll(async () => {
+    await db.close();
   });
 
   it("all empty - without search", async () => {

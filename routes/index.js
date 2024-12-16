@@ -4,7 +4,7 @@ const homeController = require("../controllers/homeController");
 const dashboardController = require("../controllers/dashboardController");
 const registerController = require("../controllers/registerController");
 const completedtaskController = require("../controllers/completedtaskController");
-const Task = require("../models/Task");
+const Task = require("../models/task");
 const TaskController = require("../controllers/TaskController");
 
 // path: routes\index.js
